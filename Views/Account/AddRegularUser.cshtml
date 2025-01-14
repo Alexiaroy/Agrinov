@@ -1,0 +1,79 @@
+@model AgriNov.Models.User
+
+@{
+    Layout = "_BaseLayout";
+    ViewBag.Title = "Renseignements Inscription";
+}
+@section ExtraStyle {
+    <link rel="stylesheet" href="~/CSS/globalstyle.css">
+    <link rel="stylesheet" href="~/CSS/formstyle.css">
+    <link rel="stylesheet" href="~/CSS/buttonsstyle.css">
+}
+
+
+<div class="form">
+    <button id="btnDemo" type="button" class="demo-btn">D</button>
+
+    @using (Html.BeginForm("AddRegularUser", "Account", FormMethod.Post))
+    {
+        <h2>Entrez vos informations</h2>
+        <div class="fieldsets-container">
+            <fieldset>
+                <div>
+                    @Html.LabelFor(model => model.ContactDetails.Name)
+                    @Html.TextBoxFor(model => model.ContactDetails.Name, new { @class = "form-input" })
+                    @Html.ValidationMessageFor(model => model.ContactDetails.Name)
+                </div>
+                <div>
+                    @Html.LabelFor(model => model.ContactDetails.FirstName)
+                    @Html.TextBoxFor(model => model.ContactDetails.FirstName, new { @class = "form-input" })
+                    @Html.ValidationMessageFor(model => model.ContactDetails.FirstName)
+                </div>
+                <div>
+                    @Html.LabelFor(model => model.ContactDetails.PhoneNumber)
+                    @Html.TextBoxFor(model => model.ContactDetails.PhoneNumber, new { @class = "form-input" })
+                    @Html.ValidationMessageFor(model => model.ContactDetails.PhoneNumber)
+                </div>
+            </fieldset>
+            <fieldset>
+                
+                    @Html.TextBoxFor(model => model.UserAccount.Id, new { @Value = @Model.UserAccount.Id, style = "display:none;"})
+                <div>
+                    @Html.LabelFor(model => model.Address.Line2)
+                    @Html.TextBoxFor(model => model.Address.Line2, new { @class = "form-input" })
+                    @Html.ValidationMessageFor(model => model.Address.Line2)
+                </div>
+                <div>
+                    @Html.LabelFor(model => model.Address.Line1)
+                    @Html.TextBoxFor(model => model.Address.Line1, new { @class = "form-input" })
+                    @Html.ValidationMessageFor(model => model.Address.Line1)
+                </div>
+                <div>
+                    @Html.LabelFor(model => model.Address.PostCode)
+                    @Html.TextBoxFor(model => model.Address.PostCode, new { @class = "form-input" })
+                    @Html.ValidationMessageFor(model => model.Address.PostCode)
+                </div>
+                <div>
+                    @Html.LabelFor(model => model.Address.City)
+                    @Html.TextBoxFor(model => model.Address.City, new { @class = "form-input" })
+                    @Html.ValidationMessageFor(model => model.Address.City)
+                </div>
+            </fieldset>
+        </div>
+        <div class="button-container">
+        <button type="submit" class="orange-btn">Envoyer</button>
+        </div>
+    }
+</div>
+
+<script>
+    document.getElementById('btnDemo').addEventListener('click', function () {
+        document.getElementById('ContactDetails_Name').value = 'Dupont';
+        document.getElementById('ContactDetails_FirstName').value = 'Prune';
+        document.getElementById('ContactDetails_PhoneNumber').value = '0123456789';
+        document.getElementById('Address_Line2').value = '1 rue Berthier';
+        document.getElementById('Address_Line1').value = ' ';
+        document.getElementById('Address_PostCode').value = '44190';
+        document.getElementById('Address_City').value = 'Clisson';
+    });
+</script>

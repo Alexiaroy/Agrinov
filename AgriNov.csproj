@@ -1,0 +1,47 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Models\Activity\**" />
+    <Content Remove="Models\Activity\**" />
+    <EmbeddedResource Remove="Models\Activity\**" />
+    <None Remove="Models\Activity\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="ViewModels\Class.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Views\Activity\AddImgActivityExample.cshtml" />
+    <Content Remove="wwwroot\CSS\dashboard.css" />
+    <Content Remove="wwwroot\img\products\confiture-myrtilles.png" />
+    <Content Remove="wwwroot\img\products\coulis_tomates.png" />
+    <Content Remove="wwwroot\img\products\jus_orange.png" />
+    <Content Remove="wwwroot\img\products\lait.png" />
+    <Content Remove="wwwroot\img\products\miel.png" />
+    <Content Remove="wwwroot\img\products\tote_bag.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\CSS\dashboard.css" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DotNetEnv" Version="3.1.1" />
+    <PackageReference Include="EntityFramework" Version="6.5.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.15" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.15">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="3.2.5" />
+  </ItemGroup>
+
+</Project>

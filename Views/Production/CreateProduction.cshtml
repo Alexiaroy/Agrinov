@@ -1,0 +1,88 @@
+﻿@model AgriNov.ViewModels.ProductionViewModel
+
+@{
+    Layout = "_BaseLayout";
+    ViewBag.Title = "Proposer une nouvelle production";
+}
+
+@section ExtraStyle {
+
+    <link rel="stylesheet" href="~/CSS/formstyle.css" />
+    <link rel="stylesheet" href="~/CSS/buttonsstyle.css" />
+}
+
+<a href="@Url.Action("SupShowAllProductions", "Production")" class="return-link">< Retour à la liste des productions</a>
+
+<div class="form">
+    @using (Html.BeginForm("CreateProduction", "Production", FormMethod.Post))
+    {
+
+        <h2>Proposer une nouvelle production</h2>
+
+        <div class="fieldsets-container">
+            <fieldset>
+                <div class="productType">
+                    @Html.LabelFor(model => model.Production.ProductType, new { @class = "control-label" })
+                    @Html.DropDownListFor(model => model.Production.ProductType, new SelectList(Model.ProductOptions, "Value", "Text", 0), new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Production.ProductType, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="volumeDelivery">
+                    @Html.LabelFor(model => model.Production.VolumePerDelivery)
+                    @Html.EditorFor(model => model.Production.VolumePerDelivery)
+                    @Html.ValidationMessageFor(model => model.Production.VolumePerDelivery)
+                </div>
+
+                <div class="price">
+                    @Html.LabelFor(model => model.Production.Price, "Prix /kg /L /piece (en €)")
+                    @Html.EditorFor(model => model.Production.Price)
+                    @Html.ValidationMessageFor(model => model.Production.Price)
+                </div>
+
+                <div class="deliveryFrequency">
+                    @Html.LabelFor(model => model.Production.DeliveryFrequency, new { @class = "control-label" })
+                    @Html.DropDownListFor(model => model.Production.DeliveryFrequency, new SelectList(Model.DeliveryFrequencyOptions, "Value", "Text", 0), new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Production.DeliveryFrequency, "", new { @class = "text-danger" })
+
+                </div>
+            </fieldset>
+            <fieldset>
+               
+
+                <div class="seasons">
+                    @Html.LabelFor(model => model.Production.Seasons, new { @class = "control-label" })
+                    @Html.DropDownListFor(model => model.Production.Seasons, new SelectList(Model.SeasonOptions, "Value", "Text", 0), new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Production.Seasons, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="years">
+                    @Html.LabelFor(model => model.Production.Years, new { @class = "control-label" })
+                    @Html.DropDownListFor(model => model.Production.Years, new SelectList(Model.YearOptions, "Value", "Text", 0), new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Production.Years, "", new { @class = "text-danger" })
+                </div>
+                <button id="btnDemo" type="button" class="demo-btn">D</button>
+            </fieldset>
+        </div>
+        <div class="production-description">
+            @Html.LabelFor(model => model.Production.Description, "Description des produits si besoin")
+            @Html.TextAreaFor(model => model.Production.Description, new { @class = "form-control", @rows = "10", @cols = "100" })
+            @Html.ValidationMessageFor(model => model.Production.Description)
+        </div>
+
+        <div class="button-container">
+            <button type="submit" class="orange-btn">Créer</button>
+        </div>
+    }
+
+</div>
+
+<script type="text/javascript">
+    document.getElementById('btnDemo').addEventListener('click', function () {
+        document.getElementById('Production_ProductType').value = 1;
+        document.getElementById('Production_VolumePerDelivery').value = 60;
+        document.getElementById('Production_Price').value = 4;
+        document.getElementById('Production_Seasons').value = 1;
+        document.getElementById('Production_Years').value = 2;
+        document.getElementById('Production_Description').value = 'Mâche, Chou-fleur, Navet, Poireaux, Carotte';
+    });
+</script>

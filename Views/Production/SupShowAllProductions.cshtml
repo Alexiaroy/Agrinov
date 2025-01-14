@@ -1,0 +1,99 @@
+﻿﻿@using AgriNov.Models
+@using AgriNov.ViewModels
+@model AgriNov.ViewModels.ProductionViewModel
+
+@{
+    Layout = "_BaseLayout";
+    ViewBag.Title = "Toutes les productions";
+}
+
+@section ExtraStyle {
+    <link rel="stylesheet" href="~/CSS/formstyle.css">
+    <link rel="stylesheet" href="~/CSS/tablestyle.css">
+    <link rel="stylesheet" href="~/CSS/buttonsstyle.css">
+}
+
+<a href="@Url.Action("Index", "DashBoard")" class="return-link">< Retour à mon compte</a>
+
+
+<div class="table-container">
+    <table style="--colNbr:8">
+        <caption>Gestion des Productions</caption>
+        <thead>
+            <tr>
+                <th>Saison</th>
+                <th>Année</th>
+                <th>Type de produit</th>
+                <th>Description</th>
+                <th>Volume par livraison</th>
+                <th>Prix (en €)</th>
+                <th>Fréquence de Livraison</th>
+                <th>Etat Proposition</th>
+               
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (AgriNov.Models.Production production in Model.ProductionsBySupplier.ToList().AsEnumerable().Reverse())
+            {
+                <tr data-id="@production.Id" data-validation-status="@production.ValidationStatus" onclick="selectRow(this);">
+
+                        <td>@production.Seasons.GetDisplayName()</td>
+                        <td>@production.Years.GetDisplayName()</td>
+                        <td>@production.ProductType.GetDisplayName()</td>
+                        <td>@production.Description</td>
+                        <td>@production.VolumePerDelivery
+                        @if (production.ProductType == ProductType.FRUITS ||
+                       production.ProductType == ProductType.FISH ||
+                       production.ProductType == ProductType.MEAT ||
+                       production.ProductType == ProductType.VEGETABLES)
+                        {
+                            <span>Kg</span>
+                        }
+                        else if (production.ProductType == ProductType.EGGS)
+                        {
+                            <span>pièce(s)</span>
+                        }
+                        else if (production.ProductType == ProductType.DAYRIS)
+                        {
+                            <span>litre(s)</span>
+                        }
+                    </td>
+                        <td>@production.Price.ToString("F2")
+                        @if (production.ProductType == ProductType.FRUITS ||
+                       production.ProductType == ProductType.FISH ||
+                       production.ProductType == ProductType.MEAT ||
+                       production.ProductType == ProductType.VEGETABLES)
+                        {
+                            <span>€/Kg</span>
+                        }
+                        else if (production.ProductType == ProductType.EGGS)
+                        {
+                            <span>€/pièce</span>
+                        }
+                        else if (production.ProductType == ProductType.DAYRIS)
+                        {
+                            <span>€/litre</span>
+                        }
+                    </td>
+                        <td>@production.DeliveryFrequency.GetDisplayName()</td>
+                        <td>@production.ValidationStatus.GetDisplayName()</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+@using (Html.BeginForm("SupShowAllProductions", "Production", FormMethod.Post))
+{
+    <div class="btn-container">
+        <button type="submit" name="action" value="add" class="orange-btn w-30">Ajouter</button>
+       
+        <button type="button" name="action" value="update" class="orange-btn w-30" id="updateButton" disabled>Modifier</button>
+      
+      </div>
+}
+
+@section Scripts {
+    <script src="~/scripts/table-control-production.js"></script>
+}

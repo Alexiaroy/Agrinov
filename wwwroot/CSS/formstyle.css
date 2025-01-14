@@ -1,0 +1,274 @@
+﻿.form {
+    max-width: 800px;
+    margin: 200px auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: var(--lightOrange) 3px 3px, var(--orangeRed) 6px 6px,var(--paleRed) 9px 9px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-no-shadow {
+    margin: 100px;
+    margin-top:50px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+    fieldset {
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        border: none;
+    }
+
+    .fieldsets-container {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+    }
+
+        .fieldsets-container fieldset {
+            flex: 1;
+        }
+
+    .production-description {
+        margin: 10px;
+    }
+
+.form-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 40px auto;
+    gap: 20px;
+}
+
+.form-subcontent {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 20px;
+}
+
+.form-right-content {
+    border: solid 1px var(--lightOrange);
+    border-radius: 15px;
+    padding: 20px;
+    width: 50%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    margin-left: 40px;
+    gap: 40px;
+}
+
+.form-right-content span {
+    font-family: 'Comfortaa';
+    display: block;
+    font-weight: 600;
+    color: #333;
+}
+
+.form-left-content {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.button-container {
+    display: flex;
+    gap: 40px;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.form-check {
+    margin-bottom: 10px;
+}
+
+.form-control {
+    resize: none;
+}
+
+.form-check-label {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.form-check-input {
+    margin-right: 10px;
+}
+
+.form h2 {
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+    margin: 20px 20px;
+    display: block;
+}
+
+label {
+    font-family: 'Comfortaa';
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"],
+input[type="password"],
+select {
+    margin-bottom: 10px;
+    margin-top: 5px;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #EABAAA;
+    border-radius: 5px;
+    background-color: #FFF6F3;
+    color: #333;
+    font-size: 16px;
+    box-sizing: border-box;
+    box-shadow: rgba(209, 81, 80, 1) 0px 1px;
+}
+
+form input[type="text"],
+form input[type="date"],
+form input[type="number"],
+form input[type="file"],
+.form-no-shadow input[type="file"],
+input[type="password"],
+form textarea,
+.form-no-shadow textarea,
+.text-area {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #EABAAA;
+    border-radius: 5px;
+    background-color: #FFF6F3;
+    color: #333;
+    font-size: 16px;
+    box-sizing: border-box;
+    box-shadow: rgba(209, 81, 80, 1) 0px 1px;
+}
+
+.validation-error {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+
+.form-underline {
+    display: flex;
+    justify-content: center;
+    height: 2px;
+    margin: 25px;
+    margin-inline: 80px;
+    background-color: var(--orangeRed);
+}
+
+
+.pdfdownload {
+   
+    font-family: 'Comfortaa';
+    font-style: normal;
+    font-weight: 700;
+   
+    line-height: 100%;
+   
+    padding-top: 60px;
+    text-decoration: none;
+    color: var(--orange);
+  
+}
+
+    .pdfdownload :hover {
+        text-decoration: underline;
+    }
+
+
+.custom-file-input::-webkit-file-upload-button {
+    visibility: hidden; 
+}
+
+.custom-file-input::before {
+    content: 'Choisir un fichier';
+    display: inline-block;
+    background-color: var(--orange);
+    border: none;
+    color: white;
+    padding: 10px 5px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+}
+
+
+
+.radio-label {
+    position: relative;
+    padding-left: 60px; 
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    
+    color: var(--contentParagraph);
+}
+
+    
+    .radio-label::before {
+        content: "";
+        position: absolute;
+        left: 5%;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 10px; 
+        height: 10px; 
+        border: 2px solid var(--orangeRed);
+        border-radius: 50%; 
+        background: white; 
+        transition: background 0.3s, border 0.3s; 
+    }
+
+
+input[type="radio"]:checked + .radio-label::before {
+    background: var(--lightOrange); 
+    border-color: var(--orange); 
+}
+
+
+.radio-label:hover::before {
+    border-color: var(--orangeRed); 
+}
+
+#imgViewer {
+    max-width: 100%;
+}
+
+input[type="datetime-local"] {
+    margin-bottom: 10px;
+    margin-top: 5px;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #EABAAA; 
+    border-radius: 5px; 
+    background-color: #FFF6F3; 
+    color: #333; 
+    font-size: 16px; 
+    box-sizing: border-box; 
+    box-shadow: rgba(209, 81, 80, 1) 0px 1px; 
+    transition: border-color 0.3s, box-shadow 0.3s; 
+}
+

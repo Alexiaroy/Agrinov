@@ -1,0 +1,108 @@
+﻿@using AgriNov.Models
+@model AgriNov.ViewModels.UserAccountInfoUpdate
+@{
+    Layout = "_BaseLayout";
+
+    ViewBag.Title = "Mon compte";
+}
+
+@section ExtraStyle {
+    <link rel="stylesheet" href="~/CSS/dashboard.css" />
+}
+<div class="page-header">
+    <h2>mon compte</h2>
+    <div></div>
+    <div class="underline" id="underline-1"></div>
+    <div class="underline" id="underline-2"></div>
+    <div class="underline" id="underline-3"></div>
+</div>
+
+<div class="account-container">
+    <div class="account-card">
+        <div class="profile-section">
+            <div class="profile-image">
+                <img src="@Url.Content("~/img/userspic/" + Model.ProfilePic)">
+            </div>
+
+            <div class="profile-info">
+                <div class="info-row">
+                    <span class="info-label">Nom :</span>
+                    <span class="info-value">@Model.ContactDetails.Name</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Prénom :</span>
+                    <span class="info-value">@Model.ContactDetails.FirstName</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Numéro de Téléphone:</span>
+                    <span class="info-value">@Model.ContactDetails.PhoneNumber</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Adresse :</span>
+                    @if (!string.IsNullOrEmpty(Model.Address.Line2))
+
+                    {
+                        <span class="info-value">@Model.Address.Line2</span>
+                    }
+                    @if (!string.IsNullOrEmpty(Model.Address.Line1))
+
+                    {
+                        <span class="info-value">@Model.Address.Line1</span>
+                    }
+                       
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Ville :</span>
+                    <span class="info-value">@Model.Address.City</span>
+                </div>
+            </div>
+        </div>
+        <div class="action-buttons">
+            @Html.ActionLink("modifier mes informations", "ChangeInfo", "Account", null, new { @class = "action-btn" })
+            @Html.ActionLink("modifier mon mot de passe", "ChangePassword", "Account", null, new { @class = "action-btn" })
+        </div>
+    </div>
+
+    <div class="management-section">
+
+        
+        @if (@Model.UserAccountLevel == AgriNov.Models.UserAccountLevel.ADMIN)
+        {
+            @Html.ActionLink("Gérer les contrats", "ShowAllBoxContracts", "BoxContract", null, new { @class = "management-card" })
+            @Html.ActionLink("Gérer les propositions de Production", "ShowAllProductions", "Production", null, new { @class = "management-card" })
+        }
+
+        @if (@Model.UserAccountLevel == AgriNov.Models.UserAccountLevel.ADMIN
+            || @Model.UserAccountLevel == AgriNov.Models.UserAccountLevel.VOLUNTEER)
+        {
+            @Html.ActionLink("Gérer les utilisateurs", "ShowAllUserAccounts", "Account", null, new { @class = "management-card" })
+            @Html.ActionLink("Gérer les commandes", "ShowAllOrders", "Order", null, new { @class = "management-card" })
+        }
+
+        @if (@Model.UserAccountLevel != AgriNov.Models.UserAccountLevel.USER
+        && @Model.UserAccountLevel != AgriNov.Models.UserAccountLevel.CORPORATE
+        && @Model.UserAccountLevel != AgriNov.Models.UserAccountLevel.VOLUNTEER
+        && @Model.UserAccountLevel != AgriNov.Models.UserAccountLevel.ADMIN)
+        {
+            @Html.ActionLink("Faire une proposition de production", "CreateProduction", "Production", null, new { @class = "management-card" })
+            @Html.ActionLink("Gérer les productions", "SupShowAllProductions", "Production", null, new { @class = "management-card" })
+            @Html.ActionLink("Faire une proposition de produit", "CreateProduct", "Product", null, new { @class = "management-card" })
+        }
+
+        @Html.ActionLink("Voir mon abonnement", "ProductDashboard", "Product", new { activeTab = "ShowMyBox" }, new { @class = "management-card" })
+        @Html.ActionLink("Voir mes commandes", "ShowMyOrders", "Order", null, new { @class = "management-card" })
+        @Html.ActionLink("Voir mes Ateliers", "ActivityDashboard", "Activity", new { activeTab = "ShowMyActivities" }, new { @class = "management-card" })
+        @Html.ActionLink("Faire une proposition d'atelier", "ActivityDashboard", "Activity", new { activeTab = "CreateActivity" }, new { @class = "management-card" })
+        @Html.ActionLink("Accéder à la Boutique", "ProductDashboard", "Product", null, new { @class = "management-card" })
+
+        
+
+
+             
+
+        
+    </div>
+
+    
+
+</div>
